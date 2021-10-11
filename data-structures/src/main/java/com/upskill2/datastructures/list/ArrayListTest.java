@@ -6,7 +6,7 @@ public class ArrayListTest {
         List  list = new ArrayList();
        int size = 10;
 
-        list.add("some");
+        list.add("some3");
         System.out.println(list);
 
         System.out.println(list.size());
