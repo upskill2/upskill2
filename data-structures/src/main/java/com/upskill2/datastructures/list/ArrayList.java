@@ -12,7 +12,7 @@ public class ArrayList implements List {
 
     @Override
     public void add(Object value, int index) {
-        if ( index > size +1 || index < -0 ) throw new IndexOutOfBoundsException("Index out of range ");
+        if ( index > size + 1 || index < -0 ) throw new IndexOutOfBoundsException("Index out of bound ");
              for (int i = array.length - 1; i > index + 1; i --) {
                  array[i] = array [i - 1];
              }
@@ -21,7 +21,12 @@ public class ArrayList implements List {
 
     @Override
     public Object remove(int index) {
-        return null;
+        if (index > size - 1 || index < 0 ) throw new IndexOutOfBoundsException("Cant remove object is its out bound ");
+        for (int i = index; i < array.length - 1; i ++) {
+            array[i] = array[i + 1];
+        }
+        array[array.length - 1] = null;
+        return array;
     }
 
     @Override
