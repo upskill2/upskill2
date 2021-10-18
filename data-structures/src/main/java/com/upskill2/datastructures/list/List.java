@@ -25,7 +25,7 @@ public interface List {
 
     // we can set value by index between [0, size - 1]
     // otherwise throw new IndexOutOfBoundsException
-    Object set(Object value, int index);
+    void set(Object value, int index);
 
     void clear();
 
@@ -44,4 +44,5 @@ public interface List {
 
     // [A, B, C]
     String toString();
+
 }

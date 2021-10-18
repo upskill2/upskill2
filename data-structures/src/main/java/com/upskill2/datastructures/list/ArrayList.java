@@ -1,22 +1,33 @@
 package com.upskill2.datastructures.list;
 
 public class ArrayList implements List {
-    Object[] array;
-    int size = 0;
+    Object[] array = new Object[5];
+       int size;
+
+    @Override
+    public Object get(int index) {
+        if( index > size || array == null) {
+            throw new IndexOutOfBoundsException("Index out of bound " + index);
+        }
+        return array[index];
+    }
 
     @Override
     public void add(Object value) {
+      if(array == null){
+          array = new Object[5];
+      }
         array[size] = value;
         size++;
     }
 
-    @Override
+    @Override //TO Do test with 20 lenght and index==10
     public void add(Object value, int index) {
-        if ( index > size + 1 || index < -0 ) throw new IndexOutOfBoundsException("Index out of bound ");
-             for (int i = array.length - 1; i > index + 1; i --) {
-                 array[i] = array [i - 1];
-             }
+        if ( index > array.length || index < 0 ) throw new IndexOutOfBoundsException("Index out of bound " + index);
+
+          System.arraycopy(array, index, array,index + 1,size - index);
              array [index] = value;
+             size++;
     }
 
     @Override
@@ -30,23 +41,38 @@ public class ArrayList implements List {
     }
 
     @Override
-    public Object get(int index) {
-        return null;
+    public void set(Object value, int index) {
+        if(index > size || index <0) {
+            throw new IndexOutOfBoundsException("Index out of bound " + index);
+        }
+        System.arraycopy(array, index, array,index,size);
+        array [index] = value;
+        size++;
     }
 
-    @Override
-    public Object set(Object value, int index) {
-        return null;
+    public boolean valueIsInArray (Object value) {
+
+        boolean valueIsInArray = false;
+
+        for(int i = 0; i < array.length; i++)
+        {
+            if(value == array[i])
+                valueIsInArray =  true;
+            else
+                valueIsInArray = false;
+
+        } return valueIsInArray;
     }
 
     @Override
     public void clear() {
+        size = 0;
 
     }
 
     @Override
     public int size() {
-        return 0;
+        return array.length;
     }
 
     @Override
@@ -56,16 +82,25 @@ public class ArrayList implements List {
 
     @Override
     public boolean contains(Object value) {
-        return false;
+        return indexOf(value) != -1;
     }
 
     @Override
     public int indexOf(Object value) {
-        return 0;
+        for (int i = 0; i < 5; i++){
+            if (value.equals(array[i])){
+                return i;
+            }
+        }
+            return -1;
     }
 
     @Override
     public int lastIndexOf(Object value) {
-        return 0;
+        for (int i = size; i >= 0; i--) {
+            if (value.equals(array[i])) {
+                return i;
+            }
+        } return -1;
     }
 }
