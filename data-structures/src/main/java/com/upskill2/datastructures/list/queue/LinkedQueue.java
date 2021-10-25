@@ -1,12 +1,11 @@
 package com.upskill2.datastructures.list.queue;
-import com.upskill2.datastructures.list.Node;
 
 public class LinkedQueue implements Queue {
 
     int size;
     Node head;
 
-    /*@Override
+    @Override
     public void enqueue(Object value) {
         Node newNode = new Node(value);
         if (size == 0) {
@@ -26,7 +25,7 @@ public class LinkedQueue implements Queue {
     @Override
     public Object dequeue() {
         size--;
-        Object value = head.value;
+        Object value = head.value; //TO DO Exceptions
         head = head.next;
         return value;
     }
@@ -39,5 +38,5 @@ public class LinkedQueue implements Queue {
     @Override
     public int size() {
         return size;
-    }*/
+    }
 }

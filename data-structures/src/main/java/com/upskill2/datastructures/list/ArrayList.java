@@ -33,9 +33,7 @@ public class ArrayList implements List {
     @Override
     public Object remove(int index) {
         if (index > size - 1 || index < 0 ) throw new IndexOutOfBoundsException("Cant remove object is its out bound ");
-        for (int i = index; i < array.length - 1; i ++) {
-            array[i] = array[i + 1];
-        }
+        if (array.length - 1 - index >= 0) System.arraycopy(array, index + 1, array, index, array.length - 1 - index);
         array[array.length - 1] = null;
         return array;
     }
@@ -54,14 +52,11 @@ public class ArrayList implements List {
 
         boolean valueIsInArray = false;
 
-        for(int i = 0; i < array.length; i++)
-        {
-            if(value == array[i])
-                valueIsInArray =  true;
-            else
-                valueIsInArray = false;
+        for (Object o : array) {
+            valueIsInArray = value == o;
 
-        } return valueIsInArray;
+        }
+        return valueIsInArray;
     }
 
     @Override

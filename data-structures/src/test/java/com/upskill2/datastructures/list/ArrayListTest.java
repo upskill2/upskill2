@@ -27,13 +27,16 @@ class ArrayListTest {
     }
 
     @Test
-    void testSize (){
-        arrayList.add("A",0);
-        arrayList.add("A",1);
-        arrayList.add("A",2);
-        arrayList.add("A",3);
-        arrayList.add("A",4);
-        assertEquals(5,arrayList.size);
+    void testSize () {
+        arrayList.add("A", 0);
+        arrayList.add("B", 1);
+        arrayList.add("C", 2);
+        arrayList.add("D", 3);
+        arrayList.add("E", 4);
+        for (int i = 0; i < 5; i++) {
+        System.out.println(arrayList.get(i));
+        assertEquals(5, arrayList.size());
+ }
     }
 
     @Test
