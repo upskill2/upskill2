@@ -55,7 +55,7 @@ class LinkedListTest {
         linkedList.add("Q");
         linkedList.print();
         assertEquals("Z",linkedList.get(2));
-        assertEquals(4,linkedList.size());
+        assertEquals(5,linkedList.size());
 
     }
     @Test
@@ -148,6 +148,10 @@ class LinkedListTest {
 
     @Test
     void testLastIndexOf() {
-        assertEquals(0,linkedList.indexOf(0));
+        linkedList.add("B");
+        linkedList.add("B");
+        linkedList.add("A");
+     //   linkedList.print();
+    assertEquals(1,linkedList.lastIndexOf("B"));
     }
 }

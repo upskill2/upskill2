@@ -156,7 +156,21 @@ public class LinkedList implements List {
 
     @Override
     public int lastIndexOf(Object value) {
-        return 0;
+
+        int index = 0;
+        Node current = head;
+
+        //While we haven't reached the end of the list
+        while(current != null) {
+            //If the items are equal return the index
+            if(current.value.equals(value)) {
+                return index;
+            }
+            //Set current to the next and increment the index
+            current = current.next;
+            index++;
+        }
+        return -1;
     }
 
     public void print(){
