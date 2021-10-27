@@ -6,9 +6,6 @@ public class LinkedList implements List {
     Node tail;
     int size;
 
-    // TO DO FROM TAIL IF 999 AND YOU HAVE 1000
-    //TO DO MAKE LINKED LIST + TESTS
-
     @Override
     public void add(Object value) {
         if (size == 0) {
@@ -34,7 +31,7 @@ public class LinkedList implements List {
         Node current = head;
         if (head == null || index == 0) {
             current = new Node(value);
-            current.next = head.next; //head 0 index && tail last element
+            current.next = head.next;
             head.prev = current.next;
             head = current;
             return;
@@ -45,10 +42,10 @@ public class LinkedList implements List {
             }
             pos++;
             current = current.next;
-        }
-        // These are 2 reference changes, as compared to adding at index 0
-        newNode.next = current.next; // here we are changing a refernce
-        current.next = newNode; // changing a reference here as well
+           }
+        newNode.next = current.next;
+        current.next = newNode;
+        size++;
           }
 
     public void addMoveElements(Object value, int index)
@@ -57,14 +54,14 @@ public class LinkedList implements List {
             throw new IndexOutOfBoundsException("Index out of bound " + index);
         }
 
-        Node current = head; //iterate through whole list
+        Node current = head;
         int pos = 0;
         Node newNode = new Node(value);
 
-        if (head == null || index == 0) // special case, since its a single reference change!
+        if (head == null || index == 0)
         {
             newNode.next = head;
-            head = newNode; // this node is now the head
+            head = newNode;
             return;
         }
         while (current.next != null) {
@@ -75,24 +72,30 @@ public class LinkedList implements List {
             current = current.next;
             size++;
         }
-        // These are 2 reference changes, as compared to adding at index 0
-        newNode.next = current.next; // here we are changing a refernce
-        current.next = newNode; // changing a reference here as well
+        newNode.next = current.next;
+        current.next = newNode;
 
     }
 
     @Override
     public Object remove(int index) {
-        if ( index > size || index < 0 ) {
+        if ( index > size+1 || index < 0 ) {
             throw new IndexOutOfBoundsException("Index out of bound " + index);
         }
-        if(index==0){
-
+        if (size == 1){
+            head = tail = null;
+            size=0;
+            return index;
+        } else {
+            Node current = head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            current = current.prev;
+            current.next = current.next;
+            current.next = null;
         }
-        if( index+1 == size) {
-            return 0;
-        }
-        return 0;
+        return size--;
     }
 
     @Override
@@ -114,6 +117,10 @@ public class LinkedList implements List {
 
     @Override
     public void set(Object value, int index) {
+        if ( index < 0 || size == 0 ) {
+            throw new IndexOutOfBoundsException("Index out of bound " + index);
+        }
+        // TO DO
             }
 
     @Override
@@ -136,7 +143,7 @@ public class LinkedList implements List {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return array.length==0;
     }
 
     @Override
@@ -146,8 +153,10 @@ public class LinkedList implements List {
 
     @Override
     public int indexOf(Object value) {
-        for (int i = 0; i < 5; i++){
-            if (value.equals(array[i])){
+        Node current = head;
+        for (int i = 1; i < size+1; i++) {
+            current = current.next;
+            if (current.value.equals(value)) {
                 return i;
             }
         }
@@ -160,13 +169,10 @@ public class LinkedList implements List {
         int index = 0;
         Node current = head;
 
-        //While we haven't reached the end of the list
         while(current != null) {
-            //If the items are equal return the index
-            if(current.value.equals(value)) {
+                        if(current.value.equals(value)) {
                 return index;
             }
-            //Set current to the next and increment the index
             current = current.next;
             index++;
         }

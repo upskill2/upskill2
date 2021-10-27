@@ -1,4 +1,5 @@
-/*package com.upskill2.datastructures.list.map;
+/*
+package com.upskill2.datastructures.list.map;
 
 import java.util.Objects;
 
@@ -59,4 +60,5 @@ public class HashMap {
         return size;
     }
 
-}*/
+}
+*/

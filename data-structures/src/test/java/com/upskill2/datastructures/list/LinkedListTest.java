@@ -1,9 +1,6 @@
 package com.upskill2.datastructures.list;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -83,7 +80,11 @@ class LinkedListTest {
     }
 
     @Test
-    void testRemove() {
+    void testRemoveIfSizeIsOne() {
+        linkedList.add("A",0);
+        linkedList.print();
+        System.out.println(linkedList.size());
+        assertEquals(0,linkedList.remove(0));
     }
 
     @Test
@@ -120,6 +121,7 @@ class LinkedListTest {
         assertEquals(2, linkedList.get(2));
     }
 
+    @Disabled
     @Test
     void testSet() {
     }
@@ -132,18 +134,26 @@ class LinkedListTest {
 
     @Test
     void testSize() {
+        assertEquals(1,linkedList.size());
     }
 
     @Test
     void testIsEmpty() {
+        assertEquals(false,linkedList.isEmpty());
     }
 
+    @Disabled
     @Test
     void testContains() {
     }
 
     @Test
     void testIndexOf() {
+        linkedList.addMoveElements("B",0);
+        linkedList.addMoveElements("A",1);
+        linkedList.addMoveElements("C",2);
+        linkedList.print();
+        assertEquals(2,linkedList.indexOf("C"));
     }
 
     @Test
@@ -151,7 +161,6 @@ class LinkedListTest {
         linkedList.add("B");
         linkedList.add("B");
         linkedList.add("A");
-     //   linkedList.print();
     assertEquals(1,linkedList.lastIndexOf("B"));
     }
 }
